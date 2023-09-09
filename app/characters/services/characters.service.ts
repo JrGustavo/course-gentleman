@@ -1,7 +1,9 @@
-export const getCharacters = () => {
-    const url = `https://rickandmortyapi.com/api/character/`;
+import { Character } from "../models";
 
-    return fetch(`${url}`)
+
+export const getCharacters = (): Promise<Character[]> => {
+    const url = `https://rickandmortyapi.com/api/character`;
+    return fetch(url)
         .then((response) => response.json())
         .then((data) => data.results);
 };

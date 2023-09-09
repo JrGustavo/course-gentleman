@@ -1,11 +1,18 @@
-function Characters() {
-  return (
-    <div>
-      <h1>Characters</h1>
-      <p>This is the characters page</p>
-    </div>
-  );
+
+import { getCharacters} from "./services";
+import {Card} from "../../components";
+
+async function fetchCharacters() {
+    return  await  getCharacters();
 }
-
-export default Characters;
-
+async function Characters() {
+    const characters = await  fetchCharacters();
+    return (
+        <>
+            {characters.map((character) => (
+                <Card key={character.id} data={character}/>
+            ))}
+        </>
+    );
+}
+export default Characters
